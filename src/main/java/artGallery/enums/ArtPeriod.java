@@ -20,4 +20,17 @@ public enum ArtPeriod
 		return value;
 	}
 	
+	public static ArtPeriod of(int value) 
+	{
+		for (ArtPeriod period : values()) 
+		{
+			if (period.value == value) 
+			{
+				return period;
+			}
+		}
+		
+		return ArtPeriod.DEFAULT_ART_PERIOD; //maybe replace that with throwing an exception so there are no data mistakes
+	}
+	
 }

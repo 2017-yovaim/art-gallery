@@ -35,7 +35,7 @@ public class PaintingDataBaseRepository implements IPaintingRepo
 				toReturn.setId(rs.getLong("ID"));
 				toReturn.setName(rs.getString("PaintingName"));
 				toReturn.setYear(rs.getInt("Year"));
-				//toReturn.setArtPeriod(new ArtPeriod(rs.getInt("ArtPeriodID")));
+				toReturn.setArtPeriod(ArtPeriod.of(rs.getInt("ArtPeriodID")));
 				toReturn.setPainterId(rs.getLong("PainterID"));
 				toReturn.setAdditionalInformation(rs.getString("AdditionalInformation"));
 				return toReturn;
