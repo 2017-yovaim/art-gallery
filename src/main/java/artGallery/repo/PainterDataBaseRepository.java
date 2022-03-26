@@ -59,7 +59,9 @@ public class PainterDataBaseRepository implements IPainterRepo
 	@Override
 	public void addPainter(Painter painter) 
 	{
-		// TODO Auto-generated method stub
+		connection.update("INTO INTO Painters(FirstName, LastName, BirthYear, YearOfDeath, PlaceOfBirth, Country, AdditionalInformation) VALUES(?, ?, ?, ?, ?, ?, ?)", 
+				painter.getFirstName(), painter.getLastName(), painter.getBirthYear(), painter.getYearOfDeath(),
+				painter.getPlaceOfBirth(), painter.getCountry(), painter.getAdditionalInformation());
 		
 	}
 

@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -18,9 +19,9 @@ import artGallery.models.Painting;
 public class PaintingDataBaseRepository implements IPaintingRepo
 {
 	
-	//to-do: turn enum id into enum "object"
 	//to-do: addPainting method
 
+	@Autowired
 	private JdbcTemplate connection;
 	
 	@Override
@@ -59,7 +60,9 @@ public class PaintingDataBaseRepository implements IPaintingRepo
 	@Override
 	public void addPainting(Painting painting) 
 	{
-		// TODO Auto-generated method stub
+		connection.update("INSERT INTO Paintings (PaintingName, Year, ArtPeriodID, PainterID, AdditionalInformation) VALUES(?, ?, ?, ?, ?)",
+				painting.getName(), painting.getYear(), painting.getArtPeriod().getValue(), painting.getPainterId(), painting.getAdditionalInformation());
+		
 		
 	}
 
