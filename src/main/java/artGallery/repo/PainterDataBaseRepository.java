@@ -1,5 +1,7 @@
 package artGallery.repo;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -7,16 +9,18 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import artGallery.enums.ArtPeriod;
 import artGallery.models.Painter;
+import artGallery.models.Painting;
 
 @Repository("painterDataBaseRepo")
 public class PainterDataBaseRepository implements IPainterRepo
 {
 	
-	//to-do: addPainter method
 
 	@Autowired
 	private JdbcTemplate connection;
@@ -62,6 +66,39 @@ public class PainterDataBaseRepository implements IPainterRepo
 		connection.update("INTO INTO Painters(FirstName, LastName, BirthYear, YearOfDeath, PlaceOfBirth, Country, AdditionalInformation) VALUES(?, ?, ?, ?, ?, ?, ?)", 
 				painter.getFirstName(), painter.getLastName(), painter.getBirthYear(), painter.getYearOfDeath(),
 				painter.getPlaceOfBirth(), painter.getCountry(), painter.getAdditionalInformation());
+		
+	}
+
+	@Override
+	public List<Painting> getAllPaintingsByPainter(Long painterID) 
+	{
+		List<Painting> result = connection.query(new PreparedStatementCreator() {
+
+				@Override
+				public PreparedStatement createPreparedStatement(Connection con) throws SQLException 
+				{
+					PreparedStatement statement = con.prepareStatement("SELECT * FROM Paintings WHERE PainterID = ?");
+					statement.setString(1, painterID.toString());
+					return statement;
+				}
+				
+			}, new RowMapper<Painting>() {
+
+				@Override
+				public Painting mapRow(ResultSet rs, int rowNum) throws SQLException 
+				{
+					Painting toReturn = new Painting();
+					toReturn.setId(rs.getLong("ID"));
+					toReturn.setName(rs.getString("PaintingName"));
+					toReturn.setYear(rs.getInt("Year"));
+					toReturn.setArtPeriod(ArtPeriod.of(rs.getInt("ArtPeriodID")));
+					toReturn.setPainterId(rs.getLong("PainterID"));
+					toReturn.setAdditionalInformation(rs.getString("AdditionalInformation"));
+					return toReturn;
+				}
+				
+			});
+		return result;
 		
 	}
 

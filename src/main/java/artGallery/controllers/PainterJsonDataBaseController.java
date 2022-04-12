@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import artGallery.models.Painter;
+import artGallery.models.Painting;
 import artGallery.repo.IPainterRepo;
 
 @RestController
@@ -28,5 +29,11 @@ public class PainterJsonDataBaseController
 	public Painter getByID(@PathVariable Long id)
 	{
 		return painterDataBaseRepo.getByID(id);
+	}
+	
+	@GetMapping("/allPaintingsBy/{painterID}")
+	public List<Painting> getAllPaintingsByPainter(@PathVariable Long painterID)
+	{
+		return painterDataBaseRepo.getAllPaintingsByPainter(painterID);
 	}
 }
