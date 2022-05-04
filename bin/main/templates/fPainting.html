@@ -1,0 +1,33 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://thymeleaf.org"> 
+
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add painting</title>
+</head>
+<body>
+    <h1>Add painting</h1>
+    <form method="post" th:object="${toAdd}">
+
+        <label for="nameInput">Name:</label>
+        <input id="nameInput" type="text" th:field="*{name}">
+
+        <label for="yearInput">Year:</label>
+        <input id="yearInput" type="text" th:field="*{year}">
+
+        <label for="artPeriodInput">ArtPeriod:</label>
+        <input id="artPeriodInput" type="text" th:field="*{artPeriod}">
+
+        <label for="painterIdInput">PainterId:</label>
+        <input id="painterIdInput" type="text" th:field="*{painterId}">
+
+        <label for="additionalInformationInput">AdditionalInformation:</label>
+        <input id="additionalInformationInput" type="text" th:field="*{additionalInformation}">
+
+        <input type="submit" value="Submit	"/>
+    </form>
+</body>
+</html>

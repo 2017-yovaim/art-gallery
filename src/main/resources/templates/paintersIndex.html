@@ -1,0 +1,16 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://thymeleaf.org"> 
+
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painters Home Page</title>
+</head>
+<body>
+    <h1>Welcome to the Painters</h1>
+    <div th:each="painter : ${painters}">
+        <a th:href="${painter.id}" th:text="${painter.id + ', ' + painter.firstName} + ', ' + painter.lastName"></a></div>
+</body>
+</html>

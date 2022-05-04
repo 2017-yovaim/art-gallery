@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://thymeleaf.org"> 
+
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add painter</title>
+</head>
+<body>
+    <h1>Add painter</h1>
+    <form method="post" th:object="${toAdd}">
+
+        <label for="firstNameInput">FirstName:</label>
+        <input id="firstNameInput" type="text" th:field="*{firstName}">
+
+        <label for="lastNameInput">LastName:</label>
+        <input id="lastNameInput" type="text" th:field="*{lastName}">
+
+        <label for="birthYearInput">BirthYear:</label>
+        <input id="birthYearInput" type="text" th:field="*{birthYear}">
+
+        <label for="yearOfDeathInput">YearOfDeath:</label>
+        <input id="yearOfDeathInput" type="text" th:field="*{yearOfDeath}">
+
+        <label for="placeOfBirthInput">PlaceOfBirth:</label>
+        <input id="placeOfBirthInput" type="text" th:field="*{placeOfBirth}">
+
+        <label for="countryInput">Country:</label>
+        <input id="countryInput" type="text" th:field="*{country}">
+
+        <label for="additionalInformationInput">AdditionalInformation:</label>
+        <input id="additionalInformationInput" type="text" th:field="*{additionalInformation}">
+
+        <input type="submit" value="Submit	"/>
+    </form>
+</body>
+</html>
